@@ -25,10 +25,10 @@ urlpatterns = (
     url(r'^students/(?P<sid>\d+)/delete/$',students_delete,name = 'students_delete'),
 
     #Groups URL's
-    url(r'^groups/$',groups_list, name='groups'),
-    url(r'groups/add/$',groups_add, name = 'groups_add'),
-    url(r'^groups/(?P<gid>\+d)/edit/$',groups_edit, name = 'groups_edit'),
-    url(r'^groups/(?P<gid>\+d)/delete/$',groups_delete, name = 'groups_delete'),
+    url(r'^groups/$', groups_list, name='groups'),
+    url(r'^groups/add/$', groups_add, name = 'groups_add'),
+    url(r'^groups/(?P<gid>\d+)/edit/$', groups_edit, name = 'groups_edit'),
+    url(r'^groups/(?P<gid>\d+)/delete/$', groups_delete, name = 'groups_delete'),
 
 
     url(r'^admin/', include(admin.site.urls)),

@@ -48,7 +48,7 @@ def groups_list(request):
         'name': u'MtM-23',
         'captain': u'Ivanov Andriy'}
     )
-    return render(request,'groups/groups_list.html',{'groups': groups})
+    return render(request,'students/group.html',{'groups': groups})
 def groups_edit(request, gid):
     return HttpResponse('<h1>Edit Group %s</h1>' % gid)
 def groups_add(request):
