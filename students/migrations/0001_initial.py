@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
@@ -10,6 +11,19 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.CreateModel(
+            name='Group',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('title', models.CharField(default='Default title', max_length=256, verbose_name='\u041d\u0430\u0437\u0432\u0430')),
+                ('notes', models.TextField(default='SOME STRING', verbose_name='\u0414\u043e\u0434\u0430\u0442\u043a\u043e\u0432\u0456 \u043d\u043e\u0442\u0430\u0442\u043a\u0438', blank=True)),
+            ],
+            options={
+                'verbose_name': '\u0413\u0440\u0443\u043f\u0430',
+                'verbose_name_plural': '\u0413\u0440\u0443\u043f\u0438',
+            },
+            bases=(models.Model,),
+        ),
         migrations.CreateModel(
             name='Student',
             fields=[
@@ -20,10 +34,19 @@ class Migration(migrations.Migration):
                 ('birthday', models.DateField(null=True, verbose_name='\u0414\u0430\u0442\u0430 \u043d\u0430\u0440\u043e\u0434\u0436\u0435\u043d\u043d\u044f')),
                 ('photo', models.ImageField(upload_to=b'', null=True, verbose_name='\u0424\u043e\u0442\u043e', blank=True)),
                 ('ticket', models.CharField(max_length=256, verbose_name='\u0411\u0456\u043b\u0435\u0442')),
-                ('notes', models.TextField(verbose_name='\u0414\u043e\u0434\u0430\u0442\u043a\u043e\u0432\u0456 \u043d\u043e\u0442\u0430\u0442\u043a\u0438', blank=True)),
+                ('notes', models.TextField(default='SOME STRING', verbose_name='\u0414\u043e\u0434\u0430\u0442\u043a\u043e\u0432\u0456 \u043d\u043e\u0442\u0430\u0442\u043a\u0438', blank=True)),
+                ('student_group', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, verbose_name='\u0413\u0440\u0443\u043f\u0430', to='students.Group', null=True)),
             ],
             options={
+                'verbose_name': 'Student',
+                'verbose_name_plural': 'Students',
             },
             bases=(models.Model,),
+        ),
+        migrations.AddField(
+            model_name='group',
+            name='leader',
+            field=models.OneToOneField(null=True, on_delete=django.db.models.deletion.SET_NULL, blank=True, to='students.Student', verbose_name='\u0421\u0442\u0430\u0440\u043e\u0441\u0442\u0430'),
+            preserve_default=True,
         ),
     ]

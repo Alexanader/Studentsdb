@@ -35,7 +35,7 @@ class Student(models.Model):
         null = True
     )
 
-    student_gruop = models.ForeignKey('Group',
+    student_group = models.ForeignKey('Group',
         verbose_name=u"Група",
         blank=False,
         null=True,
@@ -77,14 +77,7 @@ class Group(models.Model):
         max_length=256,
         blank=False,
         verbose_name=u"Назва",
-        default='Defoult title')
-
-    student_group = models.ForeignKey('Group',
-            verbose_name=u"Група",
-            blank = False,
-            null = True,
-            on_delete=models.PROTECT
-            )
+        default='Default title')
 
     leader = models.OneToOneField('Student',
         verbose_name=u"Староста",
